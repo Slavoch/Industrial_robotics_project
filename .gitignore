@@ -1,3 +1,5 @@
-build/*
-!build/build.xml
-ipynb_checkpoints
+build
+devel
+logs
+*ipynb_checkpoints
+.*

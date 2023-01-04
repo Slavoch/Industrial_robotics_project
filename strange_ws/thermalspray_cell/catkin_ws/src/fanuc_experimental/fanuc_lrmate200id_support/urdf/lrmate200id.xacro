@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="fanuc_lrmate200id" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find fanuc_lrmate200id_support)/urdf/lrmate200id_macro.xacro"/>
+    <xacro:fanuc_lrmate200id prefix=""/>
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+<!--    <xacro:sensor_d435 parent="base_link">  -->
+<!--        <origin xyz="0.12503 0.0 0.1197" rpy="0 0 0"/>  -->
+<!--    </xacro:sensor_d435>/>  -->
+    <xacro:include filename="$(find fanuc_lrmate200id_support)/urdf/gripper_tool.xacro"/>
+    <xacro:gripper_tool prefix="" connected_to=""/>
+
+
+    <xacro:sensor_d435 parent="link_6">
+        <origin xyz="0.0433 -0.002298 -0.002298" rpy="${-5*pi/4+0.1047} 0 0"/>
+    </xacro:sensor_d435>/>
+
+    <xacro:include filename="$(find fanuc_lrmate200id_support)/urdf/table.xacro"/>
+    <xacro:table prefix="" connected_to=""/>
+
+
+<!--            <xacro:include filename="$(find fanuc_lrmate200id_support)/urdf/stand_for_camera.xacro"/>-->
+<!--            <xacro:stand_for_camera prefix="" connected_to=""/>-->
+
+<!--      <xacro:include filename="$(find fanuc_lrmate200id_support)/urdf/cube.xacro"/>
+    <xacro:cube prefix="" connected_to=""/>-->
+
+    <link name="tcp"/>
+    <joint name="tcp_joint" type="fixed">
+        <origin xyz="0 0 0.09" rpy="0 0 0"/>
+<!--        <parent link="gripper_tool"/>-->
+<!--        <origin xyz="0 0 0.13" rpy="0 0 ${-pi/4}"/>-->
+        <parent link="gripper_tool"/>
+        <child link="tcp"/>
+    </joint>
+    <link name="world"/>
+    <joint name="world_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+</robot>

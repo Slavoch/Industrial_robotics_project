@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="cube" params="prefix connected_to">
+        <!-- Create a fixed joint with a parameterized name. -->
+        <joint name="${prefix}cube_tool_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}cube_tool"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </joint>
+        <link name="${prefix}cube_tool">
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find fanuc_lrmate200id_support)/meshes/lrmate200id/visual/cube.stl"
+                          scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="file://$(find fanuc_lrmate200id_support)/meshes/lrmate200id/visual/cube.stl"
+                          scale="0.701 0.301 1.001"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+</robot>
